@@ -194,7 +194,22 @@ app.get('/api/achievements', (req, res) => {
     list.sort((a, b) => new Date(b.issueDate || 0) - new Date(a.issueDate || 0));
   }
 
-  res.json({ success: true, count: list.length, data: list });
+  // Ensure all file URLs include the full host so they work across domains (Amplify + EC2)
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  const formattedList = list.map(item => {
+    if (item.file && item.file.url && !item.file.url.startsWith('http')) {
+      return {
+        ...item,
+        file: {
+          ...item.file,
+          url: `${baseUrl}${item.file.url}`
+        }
+      };
+    }
+    return item;
+  });
+
+  res.json({ success: true, count: formattedList.length, data: formattedList });
 });
 
 // 4. Get a single achievement by ID
@@ -204,6 +219,12 @@ app.get('/api/achievements/:id', (req, res) => {
   if (!found) {
     return res.status(404).json({ success: false, message: 'Achievement not found' });
   }
+
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  if (found.file && found.file.url && !found.file.url.startsWith('http')) {
+    found.file.url = `${baseUrl}${found.file.url}`;
+  }
+
   res.json({ success: true, data: found });
 });
 

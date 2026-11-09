@@ -6,6 +6,7 @@ import AchievementModal from './components/AchievementModal';
 import DocumentViewerModal from './components/DocumentViewerModal';
 import DeleteConfirmModal from './components/DeleteConfirmModal';
 import PublicPortfolioView from './components/PublicPortfolioView';
+import ProfileModal from './components/ProfileModal';
 import { api } from './services/api';
 import {
   Search,
@@ -30,6 +31,8 @@ export default function App() {
 
   // Modals state
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [profile, setProfile] = useState(null);
   const [editingItem, setEditingItem] = useState(null);
   const [deletingItem, setDeletingItem] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -50,19 +53,21 @@ export default function App() {
   const loadData = async () => {
     try {
       setIsLoading(true);
-      const [achievementsData, statsData, categoriesData] = await Promise.all([
+      const [achievementsData, statsData, categoriesData, profileData] = await Promise.all([
         api.getAchievements({
           category: selectedCategory,
           search: searchQuery,
           sortBy: sortBy
         }),
         api.getStats(),
-        api.getCategories()
+        api.getCategories(),
+        api.getProfile()
       ]);
 
       setAchievements(achievementsData);
       setStats(statsData);
       setCategories(categoriesData);
+      if (profileData) setProfile(profileData);
     } catch (err) {
       console.error('Failed to load portfolio data:', err);
       showToast('Could not reach backend server. Please verify server is running.', 'error');
@@ -130,11 +135,22 @@ export default function App() {
     setViewingDoc({ file, title });
   };
 
+  const handleSaveProfile = async (profileData) => {
+    try {
+      const updated = await api.updateProfile(profileData);
+      setProfile(updated);
+      showToast('Profile updated successfully!');
+    } catch (err) {
+      showToast(err.message || 'Failed to update profile', 'error');
+    }
+  };
+
   if (isPublicMode) {
     return (
       <PublicPortfolioView
         achievements={achievements}
         stats={stats}
+        profile={profile}
         onExit={() => setIsPublicMode(false)}
         onViewDoc={handleViewDoc}
       />
@@ -166,6 +182,7 @@ export default function App() {
       {/* Navigation */}
       <Navbar
         onOpenAddModal={handleOpenAdd}
+        onOpenProfileModal={() => setIsProfileModalOpen(true)}
         isPublicMode={isPublicMode}
         setIsPublicMode={setIsPublicMode}
         totalCount={achievements.length}
@@ -339,6 +356,13 @@ export default function App() {
         onClose={() => setDeletingItem(null)}
         onConfirm={handleDeleteAchievement}
         isDeleting={isDeleting}
+      />
+
+      <ProfileModal
+        isOpen={isProfileModalOpen}
+        onClose={() => setIsProfileModalOpen(false)}
+        profile={profile}
+        onSave={handleSaveProfile}
       />
     </div>
   );

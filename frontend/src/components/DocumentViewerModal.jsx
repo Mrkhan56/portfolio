@@ -1,14 +1,16 @@
 import React from 'react';
+import { getFileUrl } from '../services/api';
 import { X, Download, Printer, ExternalLink, FileText } from 'lucide-react';
 
 export default function DocumentViewerModal({ doc, title, isOpen, onClose }) {
   if (!isOpen || !doc) return null;
 
+  const fullUrl = getFileUrl(doc.url);
   const isPdf = doc.mimetype === 'application/pdf' || (doc.url && doc.url.toLowerCase().endsWith('.pdf'));
   const isImage = !isPdf && (doc.mimetype?.startsWith('image/') || doc.url?.match(/\.(svg|png|jpe?g|webp|gif)$/i));
 
   const handlePrint = () => {
-    const printWindow = window.open(doc.url, '_blank');
+    const printWindow = window.open(fullUrl, '_blank');
     if (printWindow) {
       printWindow.onload = () => {
         printWindow.print();
@@ -35,8 +37,10 @@ export default function DocumentViewerModal({ doc, title, isOpen, onClose }) {
         <div className="flex items-center gap-2">
           {/* Download button */}
           <a
-            href={doc.url}
+            href={fullUrl}
             download={doc.originalName || 'certificate'}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg transition-colors"
             title="Download Document"
           >
@@ -46,7 +50,7 @@ export default function DocumentViewerModal({ doc, title, isOpen, onClose }) {
 
           {/* Open in new tab */}
           <a
-            href={doc.url}
+            href={fullUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
@@ -70,14 +74,14 @@ export default function DocumentViewerModal({ doc, title, isOpen, onClose }) {
       <div className="max-w-6xl w-full mx-auto flex-1 bg-slate-900/40 rounded-3xl overflow-hidden border border-slate-800/80 flex items-center justify-center p-2 relative shadow-2xl">
         {isPdf ? (
           <iframe
-            src={doc.url}
+            src={fullUrl}
             title={title}
             className="w-full h-full rounded-2xl bg-white border-0"
           />
         ) : isImage ? (
           <div className="w-full h-full flex items-center justify-center overflow-auto p-4">
             <img
-              src={doc.url}
+              src={fullUrl}
               alt={title}
               className="max-w-full max-h-full object-contain rounded-xl shadow-2xl bg-white"
             />
@@ -90,8 +94,10 @@ export default function DocumentViewerModal({ doc, title, isOpen, onClose }) {
               This document type cannot be rendered inline. You can download and open it locally.
             </p>
             <a
-              href={doc.url}
+              href={fullUrl}
               download={doc.originalName || 'document'}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-indigo-600/30"
             >
               <Download className="w-4 h-4" />

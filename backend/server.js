@@ -379,6 +379,28 @@ app.delete('/api/achievements/:id', (req, res) => {
   }
 });
 
+// 8. Get student profile details
+app.get('/api/profile', (req, res) => {
+  const profile = getProfile();
+  res.json({ success: true, data: profile });
+});
+
+// 9. Update student profile details
+app.put('/api/profile', (req, res) => {
+  try {
+    const existing = getProfile();
+    const updated = {
+      ...existing,
+      ...req.body,
+      updatedAt: new Date().toISOString()
+    };
+    saveProfile(updated);
+    res.json({ success: true, message: 'Profile updated successfully!', data: updated });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 // Serve frontend if built
 if (fs.existsSync(FRONTEND_DIST)) {
   app.use(express.static(FRONTEND_DIST));

@@ -1,4 +1,5 @@
 import React from 'react';
+import { getFileUrl } from '../services/api';
 import {
   Award,
   Building,
@@ -206,7 +207,7 @@ export default function AchievementCard({
               className="relative aspect-video max-h-48 overflow-hidden bg-slate-950/5 cursor-pointer group/img"
             >
               <img
-                src={file.url}
+                src={getFileUrl(file.url)}
                 alt={title}
                 className="w-full h-full object-contain p-2 group-hover/img:scale-102 transition-transform duration-300"
               />
@@ -240,8 +241,10 @@ export default function AchievementCard({
                   View
                 </button>
                 <a
-                  href={file.url}
+                  href={getFileUrl(file.url)}
                   download={file.originalName || 'certificate'}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-200 rounded-lg transition-colors"
                   title="Download Document"
                 >

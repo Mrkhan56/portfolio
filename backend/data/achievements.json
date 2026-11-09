@@ -1,0 +1,143 @@
+[
+  {
+    "id": "seed-1",
+    "title": "Bachelor of Science in Computer Science & Engineering",
+    "category": "Degree & Diploma",
+    "institution": "University of Technology & Science",
+    "issueDate": "2024-06-15",
+    "expiryDate": null,
+    "grade": "CGPA 3.92 / 4.00 (Summa Cum Laude)",
+    "credentialId": "DEG-2024-88419",
+    "credentialUrl": "https://example.edu/verify/DEG-2024-88419",
+    "description": "Specialized in Artificial Intelligence and Distributed Systems. Completed Capstone project on Real-time Federated Learning. Valedictorian nominee.",
+    "tags": [
+      "Algorithms",
+      "Machine Learning",
+      "Software Architecture",
+      "Database Systems"
+    ],
+    "file": {
+      "filename": "sample-degree.svg",
+      "originalName": "BSc_Degree_Certificate_Official.pdf",
+      "mimetype": "image/svg+xml",
+      "size": 42800,
+      "url": "/uploads/sample-degree.svg"
+    },
+    "isFeatured": true,
+    "isVerified": true,
+    "createdAt": "2026-09-10T13:38:45.584Z",
+    "updatedAt": "2026-09-10T13:38:45.585Z"
+  },
+  {
+    "id": "seed-2",
+    "title": "AWS Certified Solutions Architect – Associate",
+    "category": "Professional Certification",
+    "institution": "Amazon Web Services (AWS)",
+    "issueDate": "2025-01-20",
+    "expiryDate": "2028-01-20",
+    "grade": "Score: 890 / 1000 (Pass)",
+    "credentialId": "AWS-SAA-92847104",
+    "credentialUrl": "https://www.credly.com/badges/aws-certified-solutions-architect-associate",
+    "description": "Demonstrated comprehensive knowledge of architecting secure, resilient, high-performing, and cost-optimized cloud solutions on AWS infrastructure.",
+    "tags": [
+      "AWS",
+      "Cloud Computing",
+      "VPC",
+      "Serverless",
+      "Security"
+    ],
+    "file": {
+      "filename": "sample-cert.svg",
+      "originalName": "AWS_Certified_Solutions_Architect.png",
+      "mimetype": "image/svg+xml",
+      "size": 38200,
+      "url": "/uploads/sample-cert.svg"
+    },
+    "isFeatured": true,
+    "isVerified": true,
+    "createdAt": "2026-10-10T13:38:45.585Z",
+    "updatedAt": "2026-10-10T13:38:45.585Z"
+  },
+  {
+    "id": "seed-3",
+    "title": "Official Academic Transcript & Semester Final Results",
+    "category": "Academic Result & Marksheet",
+    "institution": "University Examination Board",
+    "issueDate": "2024-07-02",
+    "expiryDate": null,
+    "grade": "Final Grade: A+ (Highest Honors)",
+    "credentialId": "TRN-90218-E",
+    "credentialUrl": "",
+    "description": "Full official academic transcript covering 8 semesters (142 credits), including Data Structures (A+), Operating Systems (A+), Advanced Algorithms (A), and Neural Networks (A+).",
+    "tags": [
+      "Academic Transcript",
+      "Marksheet",
+      "Grade A+",
+      "Official Record"
+    ],
+    "file": {
+      "filename": "sample-transcript.svg",
+      "originalName": "Official_Academic_Transcript_Complete.pdf",
+      "mimetype": "image/svg+xml",
+      "size": 51200,
+      "url": "/uploads/sample-transcript.svg"
+    },
+    "isFeatured": true,
+    "isVerified": true,
+    "createdAt": "2026-10-20T13:38:45.585Z",
+    "updatedAt": "2026-10-20T13:38:45.585Z"
+  },
+  {
+    "id": "seed-4",
+    "title": "1st Place – National Collegiate Hackathon 2024",
+    "category": "Award & Honor",
+    "institution": "National Innovation Council & Tech Hub",
+    "issueDate": "2024-11-10",
+    "expiryDate": null,
+    "grade": "Champion (1st of 180 Teams)",
+    "credentialId": "HACK-2024-WIN-01",
+    "credentialUrl": "https://techhackathon.org/winners/2024",
+    "description": "Awarded first prize for developing an accessible telemedicine mobile platform using AI triage diagnosis and offline synchronization for rural areas.",
+    "tags": [
+      "Hackathon",
+      "Innovation",
+      "Award",
+      "Mobile AI"
+    ],
+    "file": null,
+    "isFeatured": false,
+    "isVerified": true,
+    "createdAt": "2026-10-30T13:38:45.585Z",
+    "updatedAt": "2026-10-30T13:38:45.585Z"
+  },
+  {
+    "id": "seed-5",
+    "title": "Deep Learning Specialization (5-Course Series)",
+    "category": "Course & Training",
+    "institution": "DeepLearning.AI / Coursera (Instructed by Andrew Ng)",
+    "issueDate": "2024-09-05",
+    "expiryDate": null,
+    "grade": "Grade Average: 98.4%",
+    "credentialId": "COURSERA-DL-982137",
+    "credentialUrl": "https://coursera.org/verify/specialization/DL982137",
+    "description": "Mastered Deep Learning foundations, Convolutional Networks, Sequence Models (Transformers, RNNs, LSTMs), Hyperparameter tuning, and structuring ML projects.",
+    "tags": [
+      "Deep Learning",
+      "TensorFlow",
+      "PyTorch",
+      "Transformers",
+      "NLP"
+    ],
+    "file": {
+      "filename": "sample-cert.svg",
+      "originalName": "Coursera_Deep_Learning_Specialization.pdf",
+      "mimetype": "image/svg+xml",
+      "size": 38200,
+      "url": "/uploads/sample-cert.svg"
+    },
+    "isFeatured": false,
+    "isVerified": true,
+    "createdAt": "2026-11-04T13:38:45.585Z",
+    "updatedAt": "2026-11-04T13:38:45.585Z"
+  }
+]

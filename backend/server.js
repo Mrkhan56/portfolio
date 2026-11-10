@@ -10,6 +10,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from 'uuid';
 import dotenv from 'dotenv';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 // Load variables from .env file
 dotenv.config();
@@ -20,6 +21,24 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5001;
 const UPLOAD_LIMIT_MB = parseInt(process.env.UPLOAD_LIMIT_MB || '25', 10);
+
+// AWS S3 Client setup (Uses IAM Role automatically on EC2)
+const S3_BUCKET = process.env.S3_BUCKET_NAME;
+const AWS_REGION = process.env.AWS_REGION || 'eu-north-1';
+const s3 = new S3Client({ region: AWS_REGION });
+
+// Helper to upload certificate file to AWS S3
+async function uploadToS3(file) {
+  const fileStream = fs.createReadStream(file.path);
+  const command = new PutObjectCommand({
+    Bucket: S3_BUCKET,
+    Key: file.filename,
+    Body: fileStream,
+    ContentType: file.mimetype
+  });
+  await s3.send(command);
+  return `https://${S3_BUCKET}.s3.${AWS_REGION}.amazonaws.com/${file.filename}`;
+}
 
 // Middlewares
 app.use(cors());
@@ -229,7 +248,7 @@ app.get('/api/achievements/:id', (req, res) => {
 });
 
 // 5. Create / Upload a new achievement with file
-app.post('/api/achievements', upload.single('file'), (req, res) => {
+app.post('/api/achievements', upload.single('file'), async (req, res) => {
   try {
     const {
       title,
@@ -261,12 +280,24 @@ app.post('/api/achievements', upload.single('file'), (req, res) => {
     // File details if uploaded
     let fileInfo = null;
     if (req.file) {
+      let fileUrl = `/uploads/${req.file.filename}`;
+
+      // If S3 bucket is configured, upload directly to AWS S3!
+      if (S3_BUCKET) {
+        try {
+          fileUrl = await uploadToS3(req.file);
+          console.log('☁️ Certificate uploaded to S3:', fileUrl);
+        } catch (s3Err) {
+          console.error('⚠️ S3 upload error, falling back to local file:', s3Err.message);
+        }
+      }
+
       fileInfo = {
         filename: req.file.filename,
         originalName: req.file.originalname,
         mimetype: req.file.mimetype,
         size: req.file.size,
-        url: `/uploads/${req.file.filename}`
+        url: fileUrl
       };
     }
 
@@ -299,7 +330,7 @@ app.post('/api/achievements', upload.single('file'), (req, res) => {
 });
 
 // 6. Update / Edit an existing achievement
-app.put('/api/achievements/:id', upload.single('file'), (req, res) => {
+app.put('/api/achievements/:id', upload.single('file'), async (req, res) => {
   try {
     const list = getAchievements();
     const index = list.findIndex(item => item.id === req.params.id);
@@ -336,13 +367,24 @@ app.put('/api/achievements/:id', upload.single('file'), (req, res) => {
     // Handle file replacement or deletion
     let fileInfo = existing.file;
     if (req.file) {
-      // New file uploaded
+      let fileUrl = `/uploads/${req.file.filename}`;
+
+      // If S3 bucket is configured, upload new file to S3
+      if (S3_BUCKET) {
+        try {
+          fileUrl = await uploadToS3(req.file);
+          console.log('☁️ Updated certificate uploaded to S3:', fileUrl);
+        } catch (s3Err) {
+          console.error('⚠️ S3 upload error:', s3Err.message);
+        }
+      }
+
       fileInfo = {
         filename: req.file.filename,
         originalName: req.file.originalname,
         mimetype: req.file.mimetype,
         size: req.file.size,
-        url: `/uploads/${req.file.filename}`
+        url: fileUrl
       };
     } else if (removeFile === 'true' || removeFile === true) {
       fileInfo = null;

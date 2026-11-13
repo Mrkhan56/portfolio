@@ -104,7 +104,13 @@
       "Award",
       "Mobile AI"
     ],
-    "file": null,
+    "file": {
+      "filename": "sample-deans-list.svg",
+      "originalName": "National_Hackathon_Champion_Award.pdf",
+      "mimetype": "image/svg+xml",
+      "size": 42000,
+      "url": "/uploads/sample-deans-list.svg"
+    },
     "isFeatured": false,
     "isVerified": true,
     "createdAt": "2026-10-30T13:38:45.585Z",
@@ -139,5 +145,124 @@
     "isVerified": true,
     "createdAt": "2026-11-04T13:38:45.585Z",
     "updatedAt": "2026-11-04T13:38:45.585Z"
+  },
+  {
+    "id": "seed-6",
+    "title": "Google Cloud Certified - Professional Cloud Architect",
+    "category": "Professional Certification",
+    "institution": "Google Cloud",
+    "issueDate": "2025-03-15",
+    "expiryDate": "2028-03-15",
+    "grade": "Passed (Top 5% Percentile)",
+    "credentialId": "GCP-PCA-771928",
+    "credentialUrl": "https://google.accredible.com/GCP-PCA-771928",
+    "description": "Validated ability to architect, engineer, and manage robust, scalable, highly available enterprise systems and cloud migrations on Google Cloud Platform.",
+    "tags": [
+      "Google Cloud",
+      "Cloud Architecture",
+      "Kubernetes",
+      "Microservices",
+      "GCP"
+    ],
+    "file": {
+      "filename": "sample-gcp.svg",
+      "originalName": "Google_Cloud_Professional_Architect.svg",
+      "mimetype": "image/svg+xml",
+      "size": 39500,
+      "url": "/uploads/sample-gcp.svg"
+    },
+    "isFeatured": true,
+    "isVerified": true,
+    "createdAt": "2026-11-11T09:15:00.000Z",
+    "updatedAt": "2026-11-11T09:15:00.000Z"
+  },
+  {
+    "id": "seed-7",
+    "title": "Meta Certified Front-End Developer Specialization",
+    "category": "Course & Training",
+    "institution": "Meta / Coursera",
+    "issueDate": "2025-02-10",
+    "expiryDate": null,
+    "grade": "Grade: 99.2% (Honors)",
+    "credentialId": "META-FE-550219",
+    "credentialUrl": "https://coursera.org/verify/specialization/META-FE-550219",
+    "description": "In-depth specialization covering modern React, advanced JavaScript, component lifecycle, UI/UX accessibility standards, state management, and unit testing with Jest.",
+    "tags": [
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "Web Development",
+      "UI/UX"
+    ],
+    "file": {
+      "filename": "sample-meta.svg",
+      "originalName": "Meta_Front_End_Specialization_Diploma.svg",
+      "mimetype": "image/svg+xml",
+      "size": 37800,
+      "url": "/uploads/sample-meta.svg"
+    },
+    "isFeatured": false,
+    "isVerified": true,
+    "createdAt": "2026-11-12T11:20:00.000Z",
+    "updatedAt": "2026-11-12T11:20:00.000Z"
+  },
+  {
+    "id": "seed-8",
+    "title": "Dean's Honor List & Academic Excellence Award",
+    "category": "Award & Honor",
+    "institution": "School of Computing & Data Sciences",
+    "issueDate": "2025-01-15",
+    "expiryDate": null,
+    "grade": "GPA 3.98 / 4.00 (Highest Distinction)",
+    "credentialId": "HON-2025-0412",
+    "credentialUrl": "",
+    "description": "Awarded for exceptional scholastic distinction, maintaining top 1% academic standing across all computer science cohorts.",
+    "tags": [
+      "Academic Excellence",
+      "Dean's List",
+      "Scholarship",
+      "Honor"
+    ],
+    "file": {
+      "filename": "sample-deans-list.svg",
+      "originalName": "Deans_Honor_List_Official_Citation.svg",
+      "mimetype": "image/svg+xml",
+      "size": 41200,
+      "url": "/uploads/sample-deans-list.svg"
+    },
+    "isFeatured": true,
+    "isVerified": true,
+    "createdAt": "2026-11-13T08:00:00.000Z",
+    "updatedAt": "2026-11-13T08:00:00.000Z"
+  },
+  {
+    "id": "seed-9",
+    "title": "Certified Kubernetes Administrator (CKA)",
+    "category": "Professional Certification",
+    "institution": "Cloud Native Computing Foundation (CNCF)",
+    "issueDate": "2025-04-05",
+    "expiryDate": "2028-04-05",
+    "grade": "Score: 94 / 100 (Pass)",
+    "credentialId": "CKA-2400-88129",
+    "credentialUrl": "https://www.cncf.io/certification/cka/",
+    "description": "Hands-on competency in Kubernetes installation, configuration, cluster management, ingress networking, persistent storage, and production troubleshooting.",
+    "tags": [
+      "Kubernetes",
+      "Docker",
+      "DevOps",
+      "CNCF",
+      "Containers"
+    ],
+    "file": {
+      "filename": "sample-cka.svg",
+      "originalName": "Certified_Kubernetes_Administrator_CKA.svg",
+      "mimetype": "image/svg+xml",
+      "size": 39800,
+      "url": "/uploads/sample-cka.svg"
+    },
+    "isFeatured": false,
+    "isVerified": true,
+    "createdAt": "2026-11-13T14:30:00.000Z",
+    "updatedAt": "2026-11-13T14:30:00.000Z"
   }
 ]
